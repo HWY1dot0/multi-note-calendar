@@ -7,8 +7,8 @@ Instead of assuming that one calendar date maps to one file, it can gather match
 Example matches for one date:
 
 - `Daily/2026-05-29.md`
-- `Credit News/credit news 20260529.md`
-- `Iran tracker/Iran 20260529.md`
+- `Work log/work log 20260529.md`
+- `Meeting notes/team sync 20260529.md`
 
 ![Multi Note Calendar preview](./images/multi-note-calendar.png)
 
