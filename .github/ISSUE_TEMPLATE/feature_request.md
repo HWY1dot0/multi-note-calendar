@@ -1,12 +1,12 @@
 ---
 name: Feature request
-about: Suggest an idea for Multi Note Calendar
+about: Suggest an idea for Calendar Hub
 title: ""
 labels: enhancement
 assignees: ""
 ---
 
-> **Before submitting:** Make sure you are running the latest version of Multi Note Calendar.
+> **Before submitting:** Make sure you are running the latest version of Calendar Hub.
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]

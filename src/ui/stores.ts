@@ -49,7 +49,7 @@ function createDailyNotesStore() {
         if (!hasError) {
           // Avoid error being shown multiple times
           console.log(
-            "[Multi Note Calendar] Failed to find daily notes folder",
+            "[Calendar Hub] Failed to find daily notes folder",
             err
           );
         }
@@ -75,7 +75,7 @@ function createWeeklyNotesStore() {
         if (!hasError) {
           // Avoid error being shown multiple times
           console.log(
-            "[Multi Note Calendar] Failed to find weekly notes folder",
+            "[Calendar Hub] Failed to find weekly notes folder",
             err
           );
         }

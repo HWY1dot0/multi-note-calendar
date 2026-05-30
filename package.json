@@ -1,7 +1,7 @@
 {
-  "name": "multi-note-calendar",
+  "name": "calendar-hub",
   "version": "0.1.0",
-  "description": "Navigate multiple date-based notes from one calendar view",
+  "description": "Find every note created on a given day from one calendar view, no matter which folder it lives in.",
   "author": "HWY1dot0",
   "main": "main.js",
   "license": "MIT",

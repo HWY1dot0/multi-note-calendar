@@ -87,7 +87,7 @@ export default class CalendarView extends ItemView {
   }
 
   getDisplayText(): string {
-    return "Multi Note Calendar";
+    return "Calendar Hub";
   }
 
   getIcon(): string {
@@ -103,7 +103,7 @@ export default class CalendarView extends ItemView {
 
   async onOpen(): Promise<void> {
     // Integration point: external plugins can listen for
-    // `multi-note-calendar:open` to feed in additional sources.
+    // `calendar-hub:open` to feed in additional sources.
     const sources = [
       customTagsSource,
       streakSource,

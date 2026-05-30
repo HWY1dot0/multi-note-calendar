@@ -1,12 +1,12 @@
 ---
 name: Bug report
-about: Report a problem with Multi Note Calendar
+about: Report a problem with Calendar Hub
 title: ""
 labels: bug, needs-review
 assignees: ""
 ---
 
-> **Before submitting:** Make sure you are running the latest version of Multi Note Calendar.
+> **Before submitting:** Make sure you are running the latest version of Calendar Hub.
 
 ### Describe the bug
 

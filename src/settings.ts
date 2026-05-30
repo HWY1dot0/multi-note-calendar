@@ -79,7 +79,7 @@ export class CalendarSettingsTab extends PluginSettingTab {
         banner.createEl("p", {
           cls: "setting-item-description",
           text:
-            "Multi Note Calendar works best with either the Daily Notes plugin or the Periodic Notes plugin.",
+            "Calendar Hub works best with either the Daily Notes plugin or the Periodic Notes plugin.",
         });
       });
     }
@@ -179,7 +179,7 @@ export class CalendarSettingsTab extends PluginSettingTab {
     new Setting(this.containerEl)
       .setName("Date format inside daily note filenames")
       .setDesc(
-        "Optional. Multi Note Calendar already looks for the Daily Notes date format anywhere in the file name. Add extra comma-separated formats here, such as YYYYMMDD for files like 'meeting 20260529.md'."
+        "Optional. Calendar Hub already looks for the Daily Notes date format anywhere in the file name. Add extra comma-separated formats here, such as YYYYMMDD for files like 'meeting 20260529.md'."
       )
       .addText((textfield) => {
         textfield.setPlaceholder("YYYYMMDD");

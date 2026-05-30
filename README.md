@@ -1,8 +1,15 @@
-# Multi Note Calendar
+# Calendar Hub
 
-Multi Note Calendar is an Obsidian plugin for people who keep more than one date-based note for the same day.
+Calendar Hub turns the calendar sidebar into a hub for your daily notes. Instead of
+mapping each day to a single note, it surfaces **every note created on a given day**
+wherever it lives in your vault, so you can find, open, and manage them all in one place.
 
-Instead of assuming that one calendar date maps to one file, it can gather matching Markdown notes across folders and show them together when you select a day.
+## Why Calendar Hub?
+
+If you generate a lot of notes, for example with AI tools, files quickly scatter
+across folders and become hard to track down. Calendar Hub groups them by the day
+they were created, giving you a single place to see everything from a given day
+without hunting through your folder tree.
 
 Example matches for one date:
 
@@ -10,13 +17,14 @@ Example matches for one date:
 - `Work log/work log 20260529.md`
 - `Meeting notes/team sync 20260529.md`
 
-![Multi Note Calendar preview](./images/multi-note-calendar-generic.png)
+![Calendar Hub preview](./images/calendar-hub-preview.png)
 
-## Highlights
+## Features
 
-- Select a day and see every matching note for that date below the calendar.
-- Keep notes in separate folders while navigating them from one date view.
+- See all notes created on any selected day, regardless of folder.
+- Open and manage the day's notes from one panel.
 - Scan the whole vault or limit matching to specific folders.
+- Adjust folder filters directly from the calendar sidebar.
 - Match exact Daily Notes filenames and dates embedded inside longer filenames.
 - Add extra filename date formats such as `YYYYMMDD`.
 - Use frontmatter date fields as a fallback when the filename has no date.
@@ -25,7 +33,7 @@ Example matches for one date:
 
 ## Date Matching
 
-Multi Note Calendar maps Markdown files to calendar dates in this order:
+Calendar Hub maps Markdown files to calendar dates in this order:
 
 1. Exact Daily Notes filename match using your configured Daily Notes format.
 2. Date embedded in the filename using the Daily Notes format.
@@ -63,17 +71,17 @@ Manual installation uses the files attached to each GitHub release:
 - `manifest.json`
 - `styles.css`
 
-Copy those files into `.obsidian/plugins/multi-note-calendar/` inside your vault, then reload Obsidian and enable the plugin.
+Copy those files into `.obsidian/plugins/calendar-hub/` inside your vault, then reload Obsidian and enable the plugin.
 
 ## Commands
 
-- **Open calendar view**: Opens the Multi Note Calendar sidebar view.
+- **Open calendar view**: Opens the Calendar Hub sidebar view.
 - **Reveal active note in calendar**: Moves the calendar to the month for the active date-based note.
 - **Open weekly note**: Opens or creates the current weekly note when legacy weekly-note support is enabled.
 
 ## Compatibility
 
-Multi Note Calendar requires Obsidian `0.9.11` or newer.
+Calendar Hub requires Obsidian `0.9.11` or newer.
 
 The plugin uses Obsidian theme variables and should follow light and dark themes without custom CSS.
 
@@ -85,7 +93,7 @@ https://github.com/liamcain/obsidian-calendar-plugin
 
 The original project is MIT licensed. The original copyright notice remains in `LICENSE`, alongside copyright for this fork's modifications.
 
-Multi Note Calendar uses its own plugin id, `multi-note-calendar`, so it can be installed separately from the original Calendar plugin.
+Calendar Hub uses its own plugin id, `calendar-hub`, so it can be installed separately from the original Calendar plugin.
 
 ## Development
 
@@ -96,6 +104,6 @@ npm run build
 
 ## Say Thanks
 
-If Multi Note Calendar helps your workflow, you can buy me a coffee:
+If Calendar Hub helps your workflow, you can buy me a coffee:
 
 https://www.buymeacoffee.com/hwy1dot0
