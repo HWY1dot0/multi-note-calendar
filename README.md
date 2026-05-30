@@ -62,7 +62,7 @@ Install through Obsidian's Community Plugins directory after publication.
 Before publication, install with BRAT using this repository:
 
 ```text
-HWY1dot0/multi-note-calendar
+HWY1dot0/calendar-hub
 ```
 
 Manual installation uses the files attached to each GitHub release:
