@@ -1,202 +1,93 @@
 # Multi Note Calendar
 
-Multi Note Calendar is a fork of [Liam Cain's Calendar plugin](https://github.com/liamcain/obsidian-calendar-plugin) for [Obsidian](https://obsidian.md/). It is built for workflows where one calendar date can map to multiple notes across different folders.
+Multi Note Calendar is an Obsidian plugin for people who keep more than one date-based note for the same day.
 
-The original Calendar plugin is MIT licensed. The original copyright notice remains in [LICENSE](./LICENSE), alongside copyright for this fork's modifications.
+Instead of assuming that one calendar date maps to one file, it can gather matching Markdown notes across folders and show them together when you select a day.
 
-![screenshot-full](https://raw.githubusercontent.com/liamcain/obsidian-calendar-plugin/master/images/screenshot-full.png)
+Example matches for one date:
 
-## Usage
+- `Daily/2026-05-29.md`
+- `Credit News/credit news 20260529.md`
+- `Iran tracker/Iran 20260529.md`
 
-After enabling the plugin in the settings menu, you should see the calendar view appear in the right sidebar.
+## Highlights
 
-The plugin reads your Daily Note settings to know your date format, your daily note template location, and the location for new daily notes it creates. Optional settings can also scan additional date-based notes across your vault.
+- Select a day and see every matching note for that date below the calendar.
+- Keep notes in separate folders while navigating them from one date view.
+- Scan the whole vault or limit matching to specific folders.
+- Match exact Daily Notes filenames and dates embedded inside longer filenames.
+- Add extra filename date formats such as `YYYYMMDD`.
+- Use frontmatter date fields as a fallback when the filename has no date.
+- Use note-count dots to see how many matching notes exist on each day.
+- Keep optional weekly-note support for existing Calendar workflows.
 
-## Features
+## Date Matching
 
-- Go to any **daily note**.
-- Select a date and view every matching note for that day below the calendar.
-- Open multiple daily notes for the same date when they are spread across different folders.
-- Limit daily-note detection from the Calendar sidebar with a collapsible folder filter.
-- Create new daily notes for days that don't have one. (This is helpful for when you need to backfill old notes or if you're planning ahead for future notes! This will use your current **daily note** template!)
-- Visualize how many matching notes are mapped to each day.
-- Use **Weekly notes** for an added organization layer! They work just like daily notes, but have their own customization options.
+Multi Note Calendar maps Markdown files to calendar dates in this order:
+
+1. Exact Daily Notes filename match using your configured Daily Notes format.
+2. Date embedded in the filename using the Daily Notes format.
+3. Date embedded in the filename using any extra formats you configure.
+4. Frontmatter date fallback, only when the filename does not contain a matching date.
+
+Filename dates take priority over frontmatter dates. Folder filters apply to both filename and frontmatter matching.
 
 ## Settings
 
-- **Start week on [default: locale]**: Configure the Calendar view to show Sunday or Monday as the first day of the week. Choosing 'locale' will set the start day to be whatever is the default for your chosen locale (`Settings > About > Language`)
-- **Note count dots**: Solid dots reflect how many matching notes are mapped to each day. There is a max of 5 dots so that the view doesn't get too big.
-- **Confirm before creating new note [default: on]**: If you don't like that a modal prompts you before creating a new daily note, you can turn it off.
-- **Detect daily notes in all folders [default: off]**: Scan your vault for every Markdown file whose file name matches your daily note format, even outside the configured daily notes folder. If multiple files match the same date, they appear below the calendar when that day is selected.
-- **Folders to scan for daily notes [default: blank]**: Optionally limit daily-note detection to comma-separated folder paths. Leave blank to scan the whole vault. This can also be adjusted directly from the Calendar sidebar.
-- **Date format inside daily note filenames [default: blank]**: Calendar already looks for the Daily Notes date format anywhere in the file name. Optionally add extra comma-separated formats. For example, `YYYYMMDD` matches files like `meeting 20260529.md` and `journal 20260529.md`.
-- **Use frontmatter date fallback [default: off]**: If a file name does not contain a matching date, Calendar can read configured frontmatter fields and map the note to that date. File name dates take priority when both are present.
-- **Frontmatter date fields [default: date, daily_date, calendar_date]**: Comma-separated field names to read when frontmatter fallback is enabled. Nested fields can use dot notation, such as `calendar.date`.
-- **Show Week Number [default: off]**: Enable this to add a new column to the calendar view showing the [Week Number](https://en.wikipedia.org/wiki/Week#Week_numbering). Clicking on these cells will open your **weekly note**.
+- **Detect daily notes in all folders**: Scan Markdown files outside the configured Daily Notes folder.
+- **Folders to scan for daily notes**: Limit matching to comma-separated folder paths. Leave blank to scan the whole vault.
+- **Date format inside daily note filenames**: Add extra comma-separated formats, such as `YYYYMMDD`.
+- **Use frontmatter date fallback**: Read configured frontmatter fields when the filename has no matching date.
+- **Frontmatter date fields**: Choose fields such as `date`, `daily_date`, or `calendar.date`.
+- **Note count dots**: Solid dots show how many matching notes exist for the day, up to 5 dots.
+- **Confirm before creating new note**: Ask before creating a new Daily Note.
+- **Show week number**: Show week numbers and keep legacy weekly-note behavior.
 
-## Customization
-
-The following CSS Variables can be overridden in your `obsidian.css` file.
-
-```css
-/* obsidian-calendar-plugin */
-/* https://github.com/liamcain/obsidian-calendar-plugin */
-
-#calendar-container {
-  --color-background-heading: transparent;
-  --color-background-day: transparent;
-  --color-background-weeknum: transparent;
-  --color-background-weekend: transparent;
-
-  --color-dot: var(--text-muted);
-  --color-arrow: var(--text-muted);
-  --color-button: var(--text-muted);
-
-  --color-text-title: var(--text-normal);
-  --color-text-heading: var(--text-muted);
-  --color-text-day: var(--text-normal);
-  --color-text-today: var(--interactive-accent);
-  --color-text-weeknum: var(--text-muted);
-}
-```
-
-In addition to the CSS Variables, there are some classes you can override for further customization. For example, if you don't like how bright the title is, you can override it with:
-
-```css
-#calendar-container .year {
-  color: var(--text-normal);
-}
-```
-
-> **Note:** It's especially important when overriding the classes to prefix them with `#calendar-container` to avoid any unexpected changes within Obsidian!
-
-### Caution to Theme Creators
-
-If you use "Inspect Element" on the calendar, you will notice that the CSS classes are quite illegible. For example: `.task.svelte-1lgyrog.svelte-1lgyrog`. What's going on here? The classes that begin with `svelte-` are autogenerated and are used to avoid the calendar styles affecting any other elements in the app. That being said: **ignore them!** Those CSS classes are likely to change from release to release, and your overrides _will_ break. Just target the human-readable part of the class names. So to override `task.svelte-1lgyrog.svelte-1lgyrog`, you should use `#calendar-container .task { ... }`
-
-## Compatibility
-
-Multi Note Calendar currently requires Obsidian v0.9.11 or above to work properly.
+The folder filter can also be adjusted directly from the calendar sidebar.
 
 ## Installation
 
-Install Multi Note Calendar from Obsidian's Community Plugins directory after it is published. Until then, it can be installed manually or through BRAT from this repository.
+Install through Obsidian's Community Plugins directory after publication.
 
-## FAQ
+Before publication, install with BRAT using this repository:
 
-### What do the dots mean?
-
-Each solid dot represents one matching note for that day, up to a maximum of 5 dots.
-
-The hollow dots, on the other hand, mean that the day has incomplete tasks in it. (**Note:** There will only ever be 1 hollow dot on a particular day, regardless of the number of remaining tasks)
-
-### How do I change the styling of the Calendar?
-
-By default, the calendar should seamlessly match your theme, but if you'd like to further customize it, you can! In your `obsidian.css` file (inside your vault) you can configure the styling to your heart's content.
-
-### Can I add week numbers to the calendar?
-
-In the settings, you can enable "Show Week Numbers" to add a "week number" column to the calendar. Click on the week number to open a "weekly note".
-
-### How do I hide the calendar plugin without disabling the plugin?
-
-Just like other sidebar views (e.g. Backlinks, Outline), the calendar view can be closed by right-clicking on the view icon.
-
-![how-to-close](./images/how-to-close.png)
-
-### I accidentally closed the calendar. How do I reopen it?
-
-If you close the calendar widget (right-clicking on the panel nav and clicking close), you can always reopen the view from the Command Palette. Just search for `Calendar: Open view`.
-
-![how-to-reopen](./images/how-to-reopen.png)
-
-### How do I have the calendar start on Monday?
-
-From the Settings menu, you can toggle "Start week on Monday".
-
-### How do I include "unformatted" words in my weekly note filenames?
-
-If you want the weekly note format to include a word (e.g. "Week 21 of Year 2020") you can do so by surrounding the words with `[]` brackets. This tells [moment](https://momentjs.com/docs/#/displaying/format/) to ignore the words. So for the example above, you would set your format to `[Week] ww [of Year] gggg`.
-
-### I don't like showing the week numbers but I still want to use weekly notes. Can I still use them?
-
-You can open the current weekly note from the command palette by searching `Calendar: Open weekly Note`. This will open the weekly note for the current week.
-
-To configure the `format`, `folder`, and `template`, you will temporarily need to toggle on "Show weekly numbers" in the settings, but if you toggle it back off, your settings will persist.
-
-## Protips
-
-### Embed your entire week in a weekly note
-
-If you add the following snippet to your weekly note template, you can a seamless view of your week in a single click.
-
-```md
-## Week at a Glance
-
-![[{{sunday:gggg-MM-DD}}]]
-![[{{monday:gggg-MM-DD}}]]
-![[{{tuesday:gggg-MM-DD}}]]
-![[{{wednesday:gggg-MM-DD}}]]
-![[{{thursday:gggg-MM-DD}}]]
-![[{{friday:gggg-MM-DD}}]]
-![[{{saturday:gggg-MM-DD}}]]
+```text
+HWY1dot0/multi-note-calendar
 ```
 
-### Hover Preview
+Manual installation uses the files attached to each GitHub release:
 
-Just like the Obsidian's graph and internal links, the calendar supports page previews for your daily notes. Just hover over a cell while holding down `Ctrl/Cmd` on your keyboard!
+- `main.js`
+- `manifest.json`
+- `styles.css`
 
-### The calendar can be moved (and pinned!) anywhere
+Copy those files into `.obsidian/plugins/multi-note-calendar/` inside your vault, then reload Obsidian and enable the plugin.
 
-Just because the calendar appears in the right sidebar doesn't mean it has to stay there. Feel free to drag it to the left sidebar, or (if you have the screen real estate for it) into the main content area. If you move it out of the sidebar, the view can even be pinned; great for more advanced tile layouts!
+## Commands
 
-![how-to-pin](./images/how-to-pin.png)
+- **Open calendar view**: Opens the Multi Note Calendar sidebar view.
+- **Reveal active note in calendar**: Moves the calendar to the month for the active date-based note.
+- **Open weekly note**: Opens or creates the current weekly note when legacy weekly-note support is enabled.
 
-### Open daily notes in a new split
+## Compatibility
 
-If you `Ctrl/Command`-Click on a note in your calendar, it will open daily note in a new split. Useful if you want to open a bunch of daily notes in a row (especially if you have the **Sliding Panes** plugin enabled!)
+Multi Note Calendar requires Obsidian `0.9.11` or newer.
 
-### Reveal open note on calendar
+The plugin uses Obsidian theme variables and should follow light and dark themes without custom CSS.
 
-If you open a note from a different month, you might want to see it on the calendar view. To do so, you can run the command `Calendar: Reveal open note` from the command palette.
+## Relationship To Calendar
 
-### Add custom styling for weekends
+This plugin is based on Liam Cain's original Calendar plugin for Obsidian:
 
-If you want to style weekends to be distinguishable from weekdays, you can set the `var(--color-background-weekend)` to be any color you want.
+https://github.com/liamcain/obsidian-calendar-plugin
 
-![how-to-weekend](./images/how-to-weekend.png)
+The original project is MIT licensed. The original copyright notice remains in `LICENSE`, alongside copyright for this fork's modifications.
 
-### Weekly Notes (deprecated)
+Multi Note Calendar uses its own plugin id, `multi-note-calendar`, so it can be installed separately from the original Calendar plugin.
 
-#### Weekly notes have a new home
+## Development
 
-The weekly note functionality has been split out into its [very own plugin](https://github.com/liamcain/obsidian-periodic-notes/). In the future, the functionality will be removed from the Calendar plugin; so if you're currently using weekly notes, I encourage you to make the switch. Don't worry, the behavior is functionally identical and will still integrate with the calendar view!
-
-This split was inspired by the [One Thing Well](https://en.wikipedia.org/wiki/Unix_philosophy) philosophy. Plugins should be as modular. Some users might want weekly notes and have no use for a calendar view. And vice versa.
-
-If you are currently using weekly notes within the Calendar plugin, the new Periodic Notes plugin will migrate your settings for you automatically.
-
-### Usage
-
-You can open **weekly notes** in 2 ways: searching `Calendar: open weekly note` in the command palette or by clicking on the week number. Weekly notes can be configured from the Calendar settings. There are 3 settings:
-
-- **Folder:** The folder that your weekly notes go into. It can be the same or different from your daily notes. By default they are placed in your vault root.
-- **Template:** Configure a template for weekly notes. Weekly notes have slightly different template tags than daily notes. See here for the list of supported [weekly note template tags](#template-tags).
-
-> Note: The path here won't autocomplete for you, you'll need to enter the full path.
-
-- **Format:** The date format for the weekly note filename. Defaults to `"gggg-[W]ww`. If you use `DD` in the week format, this will refer to first day of the week (Sunday or Monday, depending on your settings).
-
-#### Template Tags
-
-| Tag                                                                                    | Description                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday` | Because weekly tags refer to main days, you can refer to individual days like this `{{sunday:gggg-MM-DD}}` to automatically insert the date for that particular day. Note, you must specify the date format! |
-| `title`                                                                                | Works the same as the daily note `{{title}}`. It will insert the title of the note                                                                                                                           |
-| `date`, `time`                                                                         | Works the same as the daily note `{{date}}` and `{{time}}`. It will insert the date and time of the first day of the week. Useful for creating a heading (e.g. `# # {{date:gggg [Week] ww}}`).               |
-
-## See it in action
-
-- [Nick Milo provides a nice plugin walkthrough](https://www.youtube.com/watch?v=X61wRmfZU8Y&t=1099s)
-- [Santi Younger demos how Calendar + Periodic Notes can be used for weekly review](https://www.youtube.com/watch?v=T9y8JABS9_Q)
-- [Filipe Donadio uses the calendar to plan his day](https://www.youtube.com/watch?v=hxf3_dXIcqc)
+```bash
+npm test
+npm run build
+```

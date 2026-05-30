@@ -42,7 +42,7 @@ export default class CalendarPlugin extends Plugin {
 
     this.addCommand({
       id: "show-calendar-view",
-      name: "Open view",
+      name: "Open calendar view",
       checkCallback: (checking: boolean) => {
         if (checking) {
           return (
@@ -55,7 +55,7 @@ export default class CalendarPlugin extends Plugin {
 
     this.addCommand({
       id: "open-weekly-note",
-      name: "Open Weekly Note",
+      name: "Open weekly note",
       checkCallback: (checking) => {
         if (checking) {
           return !appHasPeriodicNotesPluginLoaded();
@@ -66,7 +66,7 @@ export default class CalendarPlugin extends Plugin {
 
     this.addCommand({
       id: "reveal-active-note",
-      name: "Reveal active note",
+      name: "Reveal active note in calendar",
       callback: () => this.view.revealActiveNote(),
     });
 

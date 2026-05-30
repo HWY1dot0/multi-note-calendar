@@ -1,7 +1,7 @@
 {
   "id": "multi-note-calendar",
   "name": "Multi Note Calendar",
-  "description": "Calendar view for multiple date-based notes per day",
+  "description": "Navigate multiple date-based notes from one calendar view",
   "version": "0.1.0",
   "author": "HWY1dot0",
   "authorUrl": "https://github.com/HWY1dot0",

@@ -1,7 +1,7 @@
 {
   "name": "multi-note-calendar",
   "version": "0.1.0",
-  "description": "Calendar view for multiple date-based notes per day",
+  "description": "Navigate multiple date-based notes from one calendar view",
   "author": "HWY1dot0",
   "main": "main.js",
   "license": "MIT",

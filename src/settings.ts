@@ -74,12 +74,12 @@ export class CalendarSettingsTab extends PluginSettingTab {
     if (!appHasDailyNotesPluginLoaded()) {
       this.containerEl.createDiv("settings-banner", (banner) => {
         banner.createEl("h3", {
-          text: "⚠️ Daily Notes plugin not enabled",
+          text: "Daily Notes plugin not enabled",
         });
         banner.createEl("p", {
           cls: "setting-item-description",
           text:
-            "The calendar is best used in conjunction with either the Daily Notes plugin or the Periodic Notes plugin (available in the Community Plugins catalog).",
+            "Multi Note Calendar works best with either the Daily Notes plugin or the Periodic Notes plugin.",
         });
       });
     }
@@ -106,7 +106,7 @@ export class CalendarSettingsTab extends PluginSettingTab {
       this.containerEl.createEl("p", {
         cls: "setting-item-description",
         text:
-          "Note: Weekly Note settings are moving. You are encouraged to install the 'Periodic Notes' plugin to keep the functionality in the future.",
+          "Weekly note support is kept for compatibility. For richer periodic notes, consider using the Periodic Notes plugin.",
       });
       this.addWeeklyNoteFormatSetting();
       this.addWeeklyNoteTemplateSetting();
@@ -179,7 +179,7 @@ export class CalendarSettingsTab extends PluginSettingTab {
     new Setting(this.containerEl)
       .setName("Date format inside daily note filenames")
       .setDesc(
-        "Optional. Calendar already looks for the Daily Notes date format anywhere in the file name. Add extra comma-separated formats here, such as YYYYMMDD for files like 'meeting 20260529.md'."
+        "Optional. Multi Note Calendar already looks for the Daily Notes date format anywhere in the file name. Add extra comma-separated formats here, such as YYYYMMDD for files like 'meeting 20260529.md'."
       )
       .addText((textfield) => {
         textfield.setPlaceholder("YYYYMMDD");

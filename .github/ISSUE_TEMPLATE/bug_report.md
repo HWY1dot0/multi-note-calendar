@@ -1,12 +1,12 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a problem with Multi Note Calendar
 title: ""
 labels: bug, needs-review
 assignees: ""
 ---
 
-> **Before Submitting:** Double-check that you are running the latest version of the plugin. The bug might have already been fixed 😄
+> **Before submitting:** Make sure you are running the latest version of Multi Note Calendar.
 
 ### Describe the bug
 
@@ -34,8 +34,12 @@ _If applicable, add screenshots to help explain your problem._
 
 #### Obsidian Version (e.g. v0.10.6)
 
-`(Settings → About → Current Version)`
+`(Settings > About > Current Version)`
 
 ### Theme (if applicable):
 
 _If the bug is visual, please provide the name of the Community Theme you're using._
+
+### Matching settings
+
+_If the bug is related to date detection, include your Daily Notes date format, extra filename date formats, frontmatter fields, and folder filters._
