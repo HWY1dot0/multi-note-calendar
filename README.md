@@ -10,6 +10,8 @@ Example matches for one date:
 - `Credit News/credit news 20260529.md`
 - `Iran tracker/Iran 20260529.md`
 
+![Multi Note Calendar preview](./images/multi-note-calendar.png)
+
 ## Highlights
 
 - Select a day and see every matching note for that date below the calendar.
